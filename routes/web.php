@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\tickets;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,4 +15,16 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    //
+    Route::get(
+        '/tick',
+        [tickets::class, 'form']
+    )
+        ->name('ticket.form');
+
+    Route::post(
+        '/tick',
+        [tickets::class, 'store']
+    )
+        ->name('ticket.store');
 });
